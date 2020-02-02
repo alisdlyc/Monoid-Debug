@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Rv_First_view"
+    android:orientation="vertical"
+    android:layout_width="370dp"
+    android:layout_marginLeft="10dp"
+    android:layout_height="196dp"
+    android:layout_marginTop="35dp"
+    android:background="@drawable/back_white">
+
+    <ImageView
+        android:id="@+id/rv_mbooksdata_image"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@mipmap/bj_2"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp">
+    </ImageView>
+
+    <LinearLayout
+        android:layout_toRightOf="@id/rv_mbooksdata_image"
+        android:paddingLeft="5dp"
+        android:paddingTop="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/rv_mbooksdata_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:singleLine="true"
+            android:text="书籍名">
+        </TextView>
+
+        <TextView
+            android:id="@+id/rv_mbooksdata_writer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:maxWidth="160dp"
+            android:textSize="14sp"
+            android:text="北方栖姬/2019.1.1/中国邮电大学出版社"
+            android:textColor="@color/w_ordinarry">
+        </TextView>
+
+        <TextView
+            android:id="@+id/rv_mbooksdata_ISBN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="14sp"
+            android:text="出版年份"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/w_ordinarry">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="在架可借"
+            android:textColor="@color/w_target"
+            android:id="@+id/target"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="14dp">
+
+        </TextView>
+    </LinearLayout>
+
+
+</RelativeLayout>

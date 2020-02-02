@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group_1">
+        <item
+          android:title="北方园艺"
+          android:icon="@mipmap/bj_3"
+          android:id="@+id/item_1">
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group_2">
+        <item
+            android:title="新北方烹饪"
+            android:icon="@mipmap/bj_4"
+            android:id="@+id/item_2">
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group_3">
+        <item
+            android:title="看呐！北方警车"
+            android:icon="@mipmap/bj_7"
+            android:id="@+id/item_3">
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group_4">
+        <item
+            android:title="给你糖哇"
+            android:icon="@mipmap/bj_9"
+            android:id="@+id/item_4">
+        </item>
+    </group>
+    <group
+        android:id="@+id/group_bluetooth">
+        <item
+            android:title="给你糖哇"
+            android:icon="@mipmap/bj_9"
+            android:id="@+id/item_bluetooth">
+        </item>
+    </group>
+
+</menu>

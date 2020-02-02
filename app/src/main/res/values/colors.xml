@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="word_third">#999999</color>
+    <color name="word_sec">#666666</color>
+    <color name="word_first">#333333</color>
+    <color name="w_title">#333333</color>
+    <color name="w_ordinarry">#777777</color>
+    <color name="w_target">#d78181</color>
+    <color name="b_back">#ececec</color>
+    <color name="b_back_white">#ffffff</color>
+    <color name="b_back_gray">#d4d4d4</color>
+</resources>
