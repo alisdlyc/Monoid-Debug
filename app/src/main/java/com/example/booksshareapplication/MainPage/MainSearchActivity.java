@@ -18,6 +18,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.booksshareapplication.Beacon.BeaconList;
 import com.example.booksshareapplication.BooksSearch_First.BooksShowActivity;
 import com.example.booksshareapplication.R;
 import com.example.booksshareapplication.Util.Bookbrief;
@@ -64,6 +66,7 @@ public class MainSearchActivity extends AppCompatActivity implements View.OnTouc
 
     private TextView mBlueText;
     private String TAG="MainSearchActivity";
+    private Button mBtnBeacon;
 
 
     @Override
@@ -83,6 +86,15 @@ public class MainSearchActivity extends AppCompatActivity implements View.OnTouc
 
         mDrawerLayout = findViewById(R.id.draw_main);
         mDrawerLayout.setOnTouchListener(this);
+
+        mBtnBeacon=findViewById(R.id.ToBeaconList);
+        mBtnBeacon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainSearchActivity.this, BeaconList.class);
+                startActivity(intent);
+            }
+        });
 
 
         //可根据books_search的值来判断查询的数据库

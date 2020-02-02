@@ -1,6 +1,7 @@
 package com.example.booksshareapplication.Beacon;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -180,20 +181,20 @@ public class BeaconList extends Activity {
     protected void onStart() {
         super.onStart();
         Log.i(TAG, "onStart");
-        // if (!beaconManager.hasBluetooth()) {
-        // Toast.makeText(this, "Device does not have Bluetooth Low Energy",
-        // Toast.LENGTH_LONG).show();
-        // Log.i(TAG, "!hasBluetooth");
-        // return;
-        // }
-        // if (!beaconManager.isBluetoothEnabled()) {
-        // Log.i(TAG, "!isBluetoothEnabled");
-        // Intent enableBtIntent = new Intent(
-        // BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        // startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        // } else {
-        // connectToService();
-        // }
+         if (!beaconManager.hasBluetooth()) {
+         Toast.makeText(this, "Device does not have Bluetooth Low Energy",
+         Toast.LENGTH_LONG).show();
+         Log.i(TAG, "!hasBluetooth");
+         return;
+         }
+         if (!beaconManager.isBluetoothEnabled()) {
+         Log.i(TAG, "!isBluetoothEnabled");
+         Intent enableBtIntent = new Intent(
+         BluetoothAdapter.ACTION_REQUEST_ENABLE);
+         startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+         } else {
+         connectToService();
+         }
         connectToService();
     }
 
