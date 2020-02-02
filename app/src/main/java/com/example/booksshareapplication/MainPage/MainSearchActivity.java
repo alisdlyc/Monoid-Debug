@@ -24,16 +24,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.booksshareapplication.BooksSearch_First.BooksShowActivity;
 import com.example.booksshareapplication.R;
 import com.example.booksshareapplication.Util.Bookbrief;
-import com.example.booksshareapplication.Util.Course;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -148,7 +148,7 @@ public class MainSearchActivity extends AppCompatActivity implements View.OnTouc
         } else {
 
             if (mToast == null) {
-                mToast = Toast.makeText(MainSearchActivity.this, "查询中...", Toast.LENGTH_LONG);
+                mToast = Toast.makeText(MainSearchActivity.this, "查询中...", Toast.LENGTH_SHORT);
             } else {
                 //用户频繁点击查询按钮
                 mToast.setText("查询中");
@@ -198,24 +198,29 @@ public class MainSearchActivity extends AppCompatActivity implements View.OnTouc
                     .addHeader("Content-Type", "application/x-www-form-urlencoded")
                     .build();
 
-            Response response = null;
             try {
-                response = client.newCall(request).execute();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-//                String mJson = Objects.requireNonNull(response.body()).string()
-//                        .replace("\\", "")
-//                        .replace("\"[", "[")
-//                        .replace("]\"", "]");
-//
-                Bookbrief mJson= JSON.parseObject(response.body().string(),Bookbrief.class);
-                Log.i(TAG,mJson.toString());
+                Response response = client.newCall(request).execute();
+//                Bookbrief mJson= JSON.parseObject(response.body().string(),Bookbrief.class);
+//                JSONObject json=JSONObject.parseObject(response.body().string());
+//                JSONArray array=json.getJSONArray("name");
+                JSONArray jsonArray=JSON.parseArray(response.body().string());
+                int size=jsonArray.size();
+                mBooksData=new ArrayList<Bookbrief>();
+                for(int i=0;i<size;i++){
+                    Bookbrief bookbrief=new Bookbrief();
+                    bookbrief.setId(jsonArray.getJSONObject(i).getLong("id"));
+                    bookbrief.setName(jsonArray.getJSONObject(i).getString("name"));
+                    bookbrief.setPressingYear(jsonArray.getJSONObject(i).getLong("pressingYear"));
+                    bookbrief.setPress(jsonArray.getJSONObject(i).getString("press"));
+                    bookbrief.setHtml(jsonArray.getJSONObject(i).getString("html"));
+                    bookbrief.setBorrowingTimes(jsonArray.getJSONObject(i).getLong("borrowingTimes"));
+                    bookbrief.setTags(jsonArray.getJSONObject(i).getString("tags"));
+                    bookbrief.setUrl(jsonArray.getJSONObject(i).getString("url"));
+                    bookbrief.setSort(jsonArray.getJSONObject(i).getString("sort"));
+                    mBooksData.add(bookbrief);
+                    Log.i(TAG,"------------------------------------------"+bookbrief.toString());
+                }
 
-
-                //返回的response数据标准json格式化
-//                mBooksData = function(mJson);
 
                 Intent intent = new Intent(MainSearchActivity.this, BooksShowActivity.class);
                 intent.putExtra("mBooksData", (Serializable) mBooksData);
@@ -224,36 +229,6 @@ public class MainSearchActivity extends AppCompatActivity implements View.OnTouc
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
-
-//    // 将Bookbrief转换为ArrayList
-//    private ArrayList<Bookbrief> function(Bookbrief json) {
-////        JsonObject object=new JsonObject(json)
-//
-//    }
-
-
-//    public ArrayList<Course> function(String json) throws JSONException {
-//        JSONObject obj = new JSONObject(json);
-//        JSONArray Books = obj.getJSONArray("Books");
-//
-//        ArrayList<Course> data = new ArrayList<>();
-//
-//        for (int i = 0; i < Books.length(); i++) {
-//            Course temp = new Course();
-//            JSONObject jsonObject = Books.getJSONObject(i);
-//            temp.BookName = jsonObject.getString("BookName");
-//            temp.Press = jsonObject.getString("Press");
-//            temp.PressingYear = jsonObject.getString("PressingYear");
-//            temp.html = jsonObject.getString("html");
-//            temp.url=jsonObject.getString("url");
-//            temp.tags=jsonObject.getString("tags");
-//            data.add(temp);
-//        }
-//
-//        return data;
-//    }
 }

@@ -135,15 +135,13 @@ public class MyRegisterFragment extends Fragment {
 
                     Log.i(TAG,"请求地址---------------------------"+mBaseUrl+"register");
 
-                    getActivity().runOnUiThread(new Runnable() {
+                    Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try {
                                 Response response=client.newCall(request).execute();
-                                Log.i(TAG,"The resoponse is -----------------------"+response.body().string());
-                                MSG msg=JSON.parseObject(response.body().string(),MSG.class);
+                                MSG msg=(MSG) JSON.parseObject(response.body().string(),MSG.class);
                                 status=msg.getMsg();
-                                Log.i(TAG,"The back is -----------------------"+msg.getMsg());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

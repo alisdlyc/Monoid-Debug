@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.booksshareapplication.R;
-import com.example.booksshareapplication.Util.BooksInfoCourse;
+import com.example.booksshareapplication.Util.BookDetail;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BooksInfoActivity extends AppCompatActivity {
     private RecyclerView mRv_newbooks;
     public Intent intent;
-    public ArrayList<BooksInfoCourse> mBooksInfo;
+    public BookDetail mBooksInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,8 @@ public class BooksInfoActivity extends AppCompatActivity {
         //创建intent对象用于接收数据
         intent=getIntent();
         //接受intent传入的书籍
-        mBooksInfo=(ArrayList<BooksInfoCourse>)getIntent().getSerializableExtra("mBooksInfo");
+        mBooksInfo=(BookDetail)getIntent().getSerializableExtra("mBooksInfo");
+//        mRv_newbooks.setAdapter(new mBooksInfoAdapter(BooksInfoActivity.this,mBooksInfo));
         mRv_newbooks.setAdapter(new mBooksInfoAdapter(BooksInfoActivity.this,mBooksInfo));
     }
 }

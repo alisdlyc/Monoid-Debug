@@ -62,5 +62,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
     implementation files('libs/ab-sdk-beta1.7.4.jar')
-    compile 'com.alibaba:fastjson:1.2.61'
+    implementation 'com.alibaba:fastjson:1.2.61'
 }

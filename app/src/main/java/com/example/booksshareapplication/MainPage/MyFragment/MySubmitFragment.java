@@ -12,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.example.booksshareapplication.MainPage.MainSearchActivity;
 import com.example.booksshareapplication.R;
+import com.example.booksshareapplication.Util.MSG;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -81,8 +83,8 @@ public class MySubmitFragment extends Fragment {
                     final OkHttpClient client = new OkHttpClient();
 
                     RequestBody requestBody = new FormBody.Builder()
-                            .add("studentId", sharedPreferences.getString("studentId",""))
-                            .add("password", md5(sharedPreferences.getString("password","")))
+                            .add("studentId", mEtStudentId_sm.getText().toString())
+                            .add("password", md5(mEtPassword_sm.getText().toString()))
                             .build();
 
                     final Request request = new Request.Builder()
@@ -95,8 +97,11 @@ public class MySubmitFragment extends Fragment {
                         @Override
                         public void run() {
                             try {
+//                                Response response=client.newCall(request).execute();
+//                                IsLogin=Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(response.body()).string()));
                                 Response response=client.newCall(request).execute();
-                                IsLogin=Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(response.body()).string()));
+                                MSG msg=(MSG) JSON.parseObject(response.body().string(),MSG.class);
+                                IsLogin=msg.getMsg();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -110,6 +115,10 @@ public class MySubmitFragment extends Fragment {
                         case 1:
                             //成功登录之后记录登录信息，在下次打开App的时候直接跳转到搜索界面
                             editor.putBoolean("LoginSuccess",true).apply();
+                            editor.putString("studentId",mEtStudentId_sm.getText().toString())
+                                .putString("password",mEtPassword_sm.getText().toString())
+                                .putBoolean("IsRegister",true)
+                                .apply();
 
                             //如果当前账号不是在注册之后直接登录的，则记录当前账号的账号与密码，下次直接登录
                             if(sharedPreferences.getBoolean("IsRegister",false)){

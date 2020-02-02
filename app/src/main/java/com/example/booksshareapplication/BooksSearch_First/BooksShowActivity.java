@@ -16,14 +16,14 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.booksshareapplication.R;
-import com.example.booksshareapplication.Util.Course;
+import com.example.booksshareapplication.Util.Bookbrief;
 
 import java.util.ArrayList;
 
 public class BooksShowActivity extends Activity {
     private RecyclerView mRv_newbooks;
     public Intent intent;
-    public ArrayList<Course> mBooksData;
+    public ArrayList<Bookbrief> mBooksData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class BooksShowActivity extends Activity {
         //创建intent对象用于接收数据
         intent=getIntent();
         //接受intent传入的书籍
-        mBooksData=(ArrayList<Course>)getIntent().getSerializableExtra("mBooksData");
+        mBooksData=(ArrayList<Bookbrief>)getIntent().getSerializableExtra("mBooksData");
         mRv_newbooks.setAdapter(new mBooksShowAdapter(BooksShowActivity.this,mBooksData));
     }
 
