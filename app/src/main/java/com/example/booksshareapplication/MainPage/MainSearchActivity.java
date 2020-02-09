@@ -51,19 +51,15 @@ public class MainSearchActivity extends AppCompatActivity implements View.OnTouc
     public View view;
     private float PosX, curPosX;
     private EditText mEditText;
-
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
-
     public ArrayList<Bookbrief> mBooksData;
     private ImageView mSearchIcon;
     private ImageView mBooksOrMagazine;
-
     public String mSearchContext;
     private Toast mToast;
     private DrawerLayout mDrawlayout;
     public boolean books_search = true;
-
     private TextView mBlueText;
     private String TAG="MainSearchActivity";
     private Button mBtnBeacon;
@@ -171,6 +167,8 @@ public class MainSearchActivity extends AppCompatActivity implements View.OnTouc
         }
     }
 
+
+    // 复写onTouch方法 实现对向右滑动的监听
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
